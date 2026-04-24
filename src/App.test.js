@@ -1,8 +1,23 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+// Mock react-icons so SVG icons don't break in jsdom
+jest.mock('react-icons/wi', () => ({
+  WiDaySunny: () => <span>WiDaySunny</span>,
+  WiCloud: () => <span>WiCloud</span>,
+  WiRain: () => <span>WiRain</span>,
+  WiSnow: () => <span>WiSnow</span>,
+  WiHumidity: () => <span>WiHumidity</span>,
+  WiStrongWind: () => <span>WiStrongWind</span>,
+  WiDayCloudy: () => <span>WiDayCloudy</span>,
+}));
+
+jest.mock('react-icons/fi', () => ({
+  FiSearch: () => <span>FiSearch</span>,
+}));
+
+test('renders weather app title', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+  const titleElement = screen.getByRole('heading', { name: /Weather/i });
+  expect(titleElement).toBeInTheDocument();
+}); 
