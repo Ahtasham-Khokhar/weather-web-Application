@@ -45,7 +45,7 @@ const WeatherApp = () => {
     setError('');
 
     try {
-      const url = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${cityInput.trim()}&units=metric&aqi=yes`;
+      const url = `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${cityInput.trim()}&units=metric&aqi=yes`;
       const response = await fetch(url);
       
       if (!response.ok) {
